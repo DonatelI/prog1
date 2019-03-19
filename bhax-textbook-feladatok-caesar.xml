@@ -8,33 +8,101 @@
     <section>
         <title><type>int ***</type> háromszögmátrix</title>
         <para>
-           
+	Megoldás forrása:
         </para>
+        <para><programlisting language="c"><![CDATA[
+	
+	#include <stdio.h>
+	#include <stdlib.h>
+	int main ()
+	{
+	    int nr = 3;
+	    double **tm;
+
+	    printf("%p\n", &tm);
+	    if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
+	    {
+		return -1;
+	    }
+	    printf("%p\n", tm);
+	    for (int i = 0; i < nr; ++i)
+	    {
+		if ((tm[i] = (double *) malloc ((i + 1) * sizeof (double))) == NULL)
+		{
+		    return -1;
+		}
+	    }
+	    printf("%p\n", tm[0]);
+
+	    for (int i = 0; i < nr; ++i)
+		for (int j = 0; j < i + 1; ++j)
+		    tm[i][j] = i * (i + 1) / 2 + j;
+
+	    for (int i = 0; i < nr; ++i)
+	    {
+		for (int j = 0; j < i + 1; ++j)
+		    printf ("%f, ", tm[i][j]);
+		printf ("\n");
+	    }
+	    for (int i = 0; i < nr; ++i)
+	    {
+		for (int j = 0; j < i + 1; ++j)
+		    printf ("%f, ", tm[i][j]);
+		printf ("\n");
+	    }
+	    for (int i = 0; i < nr; ++i)
+		free (tm[i]);
+	    free (tm);
+	    return 0;
+	}
+	]]></programlisting>
+	</para>
         <para>
-            Megoldás videó:
+            Ha a négyzetes mátrix főátlója alatt vagy felett minden elem 0, a mátrx háromszögmátrix.
+            Az alsó háromszögmátrix elemeit sorfolytonosan bejárva el tudjuk helyezni egy tömbben, az így kapott elemek száma n(n+1)/2 lesz.
+            A <function>malloc</function> függvény képes lefoglalni a dinamikus területen egy, a paramétereként kapott méretű területet.
+            A <function>free</function> függvény felszabadítja a lefoglalt területet.
         </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+    </section>
     <section>
         <title>C EXOR titkosító</title>
         <para>
             Írj egy EXOR titkosítót C-ben!
         </para>
         <para>
-            Megoldás videó:
+            Megoldás forrás:
         </para>
         <para>
-            Megoldás forrása:                
+	<programlisting language="c"><![CDATA[
+	#include <stdio.h>
+	#include <unistd.h>
+	#include <string.h>
+	#define MAX_KULCS 100
+	#define BUFFER_MERET 256
+	int main (int argc, char **argv)
+	{
+	  char kulcs[MAX_KULCS];
+	  char buffer[BUFFER_MERET];
+	  int kulcs_index = 0;
+	  int olvasott_bajtok = 0;
+	  int kulcs_meret = strlen (argv[1]);
+	  strncpy (kulcs, argv[1], MAX_KULCS);
+	  while ((olvasott_bajtok = read (0, (void *) buffer, BUFFER_MERET)))
+	    {
+	      for (int i = 0; i < olvasott_bajtok; ++i)
+		{
+		  buffer[i] = buffer[i] ^ kulcs[kulcs_index];
+		  kulcs_index = (kulcs_index + 1) % kulcs_meret;
+		}
+	      write (1, buffer, olvasott_bajtok);
+	    }
+	}
+	]]> </programlisting>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+            Ez a titkosítási módszer a xor művelet azonosságain alapul: A XOR B = C és C XOR B = A (A=tiszta bemeneti adat, B=titkosító kulcs, C=kimenő titkosított adat)
+        </para>
+    </section>
     <section>
         <title>Java EXOR titkosító</title>
         <para>
@@ -43,58 +111,167 @@
         <para>
             Megoldás videó:
         </para>
-        <para>
-            Megoldás forrása:                
+        <para><programlisting language="c"><![CDATA[
+           public class Titkosito {
+    public Titkosito(String kulcsSzöveg,
+            java.io.InputStream bejövőCsatorna,
+            java.io.OutputStream kimenőCsatorna)
+            throws java.io.IOException {
+        byte [] kulcs = kulcsSzöveg.getBytes();
+        byte [] buffer = new byte[256];
+        int kulcsIndex = 0;
+        int olvasottBájtok = 0;
+        while((olvasottBájtok =
+                bejövőCsatorna.read(buffer)) != -1) {
+            for(int i=0; i<olvasottBájtok; ++i) {
+                buffer[i] = (byte)(buffer[i] ^ kulcs[kulcsIndex]);
+                kulcsIndex = (kulcsIndex+1) % kulcs.length;
+            }
+            kimenőCsatorna.write(buffer, 0, olvasottBájtok);
+        }
+    }
+    public static void main(String[] args) {
+        try {
+            new Titkosito(args[0], System.in, System.out);
+        } catch(java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+]]> </programlisting>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+            Itt csak nyelvi különbségek vannak a feladatok között.
+        </para>
+    </section>
     <section>
         <title>C EXOR törő</title>
         <para>
             Írj egy olyan C programot, amely megtöri az első feladatban előállított titkos szövegeket!
         </para>
         <para>
-            Megoldás videó:
+            <programlisting language="c"><![CDATA[
+	#define MAX_TITKOS 4096
+	#define OLVASAS_BUFFER 256
+	#define KULCS_MERET 8
+	#define _GNU_SOURCE
+	#include <stdio.h>
+	#include <unistd.h>
+	#include <string.h>
+
+	double
+	atlagos_szohossz (const char *titkos, int titkos_meret)
+	{
+	  int sz = 0;
+	  for (int i = 0; i < titkos_meret; ++i)
+	    if (titkos[i] == ' ')
+	      ++sz;
+
+	  return (double) titkos_meret / sz;
+	}
+	int tiszta_lehet (const char *titkos, int titkos_meret)
+	{
+	  double szohossz = atlagos_szohossz (titkos, titkos_meret);
+	  return szohossz > 6.0 && szohossz < 9.0
+	    && strcasestr (titkos, "hogy") && strcasestr (titkos, "nem")
+	    && strcasestr (titkos, "az") && strcasestr (titkos, "ha");
+	}
+
+	void exor (const char kulcs[], int kulcs_meret, char titkos[], int titkos_meret)
+	{
+	  int kulcs_index = 0;
+	  for (int i = 0; i < titkos_meret; ++i)
+	    {
+	      titkos[i] = titkos[i] ^ kulcs[kulcs_index];
+	      kulcs_index = (kulcs_index + 1) % kulcs_meret;
+	    }
+	}
+	int exor_tores (const char kulcs[], int kulcs_meret, char titkos[],
+		    int titkos_meret)
+	{
+	  exor (kulcs, kulcs_meret, titkos, titkos_meret);
+	  return tiszta_lehet (titkos, titkos_meret);
+	}
+	int
+	main (void)
+	{
+	  char kulcs[KULCS_MERET];
+	  char titkos[MAX_TITKOS];
+	  char *p = titkos;
+	  int olvasott_bajtok;
+	  // titkos fajt berantasa
+	  while ((olvasott_bajtok =
+		  read (0, (void *) p,
+			(p - titkos + OLVASAS_BUFFER <
+			 MAX_TITKOS) ? OLVASAS_BUFFER : titkos + MAX_TITKOS - p)))
+	    p += olvasott_bajtok;
+	  // maradek hely nullazasa a titkos bufferben
+	  for (int i = 0; i < MAX_TITKOS - (p - titkos); ++i)
+	    titkos[p - titkos + i] = '\0';
+	  // osszes kulcs eloallitasa
+	  for (int ii = '0'; ii <= '9'; ++ii)
+	    for (int ji = '0'; ji <= '9'; ++ji)
+	      for (int ki = '0'; ki <= '9'; ++ki)
+		for (int li = '0'; li <= '9'; ++li)
+		  for (int mi = '0'; mi <= '9'; ++mi)
+		    for (int ni = '0'; ni <= '9'; ++ni)
+		      for (int oi = '0'; oi <= '9'; ++oi)
+			for (int pi = '0'; pi <= '9'; ++pi)
+			  {
+			    kulcs[0] = ii;
+			    kulcs[1] = ji;
+			    kulcs[2] = ki;
+			    kulcs[3] = li;
+			    kulcs[4] = mi;
+			    kulcs[5] = ni;
+			    kulcs[6] = oi;
+			    kulcs[7] = pi;
+
+			    if (exor_tores (kulcs, KULCS_MERET, titkos, p - titkos))
+			      printf
+				("Kulcs: [%c%c%c%c%c%c%c%c]\nTiszta szoveg: [%s]\n",
+				 ii, ji, ki, li, mi, ni, oi, pi, titkos);
+
+			    // ujra EXOR-ozunk, igy nem kell egy masodik buffer
+			    exor (kulcs, KULCS_MERET, titkos, p - titkos);
+			  }
+
+	  return 0;
+	}
+
+	]]> </programlisting>
         </para>
         <para>
-            Megoldás forrása:                
+            Ez az exor törő az előző feladattal működik, az ha a bemeneti szöveg magyar nyelvű és a titkosító kulcs 8 számjegyből áll.
+            Nagyjából ez csak egy sima brute force algoritmus ami minden lehetséges kulccsal elvégzi a törést és ha az eredmény a feltételeknek (atlagos_szohossz és tiszta_lehet függvények) megfelel akkor azt adja vissza eredményül.
         </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+    </section>
     <section>
         <title>Neurális OR, AND és EXOR kapu</title>
         <para>
-            R
-        </para>
-        <para>
             Megoldás videó: <link xlink:href="https://youtu.be/Koyw6IH5ScQ">https://youtu.be/Koyw6IH5ScQ</link>
         </para>
-        <para>
-            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R</link>               
+	<para>
+            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/NN_R/nn.r">https://gitlab.com/nbatfai/bhax/blob/master/attention_raising/NN_R/nn.r</link>
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>            
-    </section>        
+	Neurális hálónak nevezzük azt a párhuzamos működésre képes információfeldolgozó eszközt, amely nagyszámú, hasonló típusú elem összekapcsolt rendszeréből áll
+	Ezenfelül egyik legfontosabb jellemzője az hogy rendelkezik tanulási algoritmussal és képes előhívni a megtanult információt.
+        </para>
+    </section>
     <section>
         <title>Hiba-visszaterjesztéses perceptron</title>
         <para>
             C++
         </para>
         <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
+            Megoldás forrása: <link xlink:href="https://github.com/nbatfai/nahshon/blob/master/ql.hpp#L64">https://github.com/nbatfai/nahshon/blob/master/ql.hpp#L64</link>               
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...
         </para>            
-    </section>        
-        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-</chapter>                
+    </section>
+
+
+
+</chapter>
