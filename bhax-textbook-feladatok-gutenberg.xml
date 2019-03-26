@@ -1,0 +1,332 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Juhász István: Magas szintű programozási nyelvek 1</title>
+        <formalpara>
+            <title>Alapfogalmak:</title>
+            <para>
+A magas szintű nyelv a számítógépek programozására kialakult nyelvek egyik szintje.
+Forrásszövegnek nevezzük a magas szintű programozási nyelven írt programot.
+Fő fajtái a programkészitésnek(a forrásszövegből) a fordítóprogramos(pl C) és az interpreteres módszer(pl JavaScript)
+A fordítóprogram a következő lépéseket hajtja végre: lexikális elemzés (darabolás egységekre), szintaktikai elemzés (teljesülnek-e a nyelv szabályai), szemantikai elemzés és kódgenerálás.
+A fordítóprogam mint "közvetítő réteg" rengeteg tesztet, elemzést hajt végre a programon a kódgeneráláson kívül (pl lexikális, szintaktikai, szemantikai elemzés
+Míg a fordítóprogramos technikánál készül tárgyprogram, addig az interpreteres technikánál nem.
+A programozási nyelvek saját szintaktikai és szemantikai szabályait hivatkozási nyelvnek nevezzük.
+A programnyelvek osztályozása: vannak imperatív, deklaratív és egyéb nyelvek.
+Imperatív nyelvek:a program utasítások sorozata és a legfőbb programozói eszköz a változó. Az algoritmus működteti a processzort.
+Deklaratív nyelvek: nem algoritmikus nyelvek, a programozónak nincs lehetősége memóriaműveletekre (vagy csak korlátozott módon).
+            </para>
+        </formalpara>
+        <formalpara>
+            <title>Adattípusok:</title>
+            <para>
+Az adattípus konkrét programozási eszközök komponenseként jelenik meg.
+Legfontosabb tényezői a tartomány, a műveletek és reprezentáció.
+Tartomány: Olyan elemeket tartalmaz, amiket felvehet értékként egy programozási eszköz.
+(Műveletek: elemeken végrehajtható műveletek)
+Reprezentáció: belső ábrázolási mód.(gyakran előre meghatározott)
+Saját reprezentáció igen ritka(pl. Ada)
+Az adattípusok csoportjai:
+Egyszerű:egész, valós, karakteres és a logikai típusok
+Összetett:Tömb(több fajta dimenziós változatok)
+Az egyszerű típusok közül az egész, valós, karakteres és a logikai típus már a programozás-tanulás korai fázisában előjön.
+Ugyanez elmondható a tömbről is, mely ugyan az összetett típusokhoz tartozik, de egy- és kétdimenziós változatait gyakran használjuk, szinte a kezdetektől fogva.
+            </para>
+        </formalpara>
+        <formalpara>
+            <title>A nevesített konstans:</title>
+            <para>
+Három komponense van: név, típus és érték.
+A nevesített konstans amit mi használunk általában a #define. amely minden előfordulást kicserél
+            </para>
+        </formalpara>
+        <formalpara>
+            <title>Változó:</title>
+            <para>
+Az imperatív programozási nyelvek fő eszköze, négy komponense van: név, attribútumok, cím, érték.
+A változó alapja a név a többi "attribútomot" pedig hozzárendeljük.
+Az attribútumok a változó futás közbeni viselkedését határozzák meg, a cím pedig a változó elhelyezkedését.
+Ha két különböző névvel rendelkező változónak a futási idő egy adott pillanatában azonos a címkomponense és az értékkomponense is, akkor beszélhetünk többszörös tárhivatkozásról.
+Az eljárásorientált nyelvek leggyakoribb utasítása az értékadó utasítás.
+            </para>
+        </formalpara>
+        <formalpara>
+            <title>Kifejezések:</title>
+            <para>
+Szintaktikai eszközök, két komponensük az érték és a típus.
+Összetevői az operandusok, az operátorok és a kerek zárójelek.
+Létezik egyoperandusú (unáris), kétoperandusú (bináris) és háromoperandusú (ternáris) operátor is.
+A kifejezések három alakja a
+Pre,in és Postfix mely értelemszerűen a operátor helyét mutatják az operandusokhoz képest.
+A kifejezés kiértékelése:a kifejezés értékének és típusának meghatározódása.
+A kiértékelés szempontjából a logikai operátorokkal rendelkező kifejezések speciálisak, ugyanis előfordulhat, hogy nem végezzük el az összes műveletet.(Logikus pl VAGY-nál igaz érték találása esetén továbbszámolni).
+Két programozási eszköz típusa azonos deklaráció-, név- és struktúra egyenértékűség esetén.
+A C egy kifejezésorientált nyelv.
+A mutató típus tartományának elemeivel összeadás és kivonás végezhető.
+A tömb típusú eszköz neve mutató típusú.
+<programlisting><![CDATA[
+//Operátorok:
+() - függvényoperátor;
+[] - tömboperátor;
+. - minősítő operátor;
+-> - mutatóval történő minősítés operátora;
+* - indirekciós operátor;
+! - egyoperandusú operátor;
+~ - egyes komplemens operátora;
+* - szorzás operátora;
+/ - osztás operátora;
+% - maradékképzés operátora;
++ - összeadás operátora;
+- - kivonás operátora;
+<< >> - léptető operátorok;
+< > <= >= = != - hasonlító operátorok;
+& ^ | - nem rövidzár logikai operátorok;
+&& || - rövidzár logikai operátorok;
+? : - háromoperandusú operátor.]]>
+</programlisting>
+            </para>
+        </formalpara>
+<formalpara>
+    <title>Utasítások:</title>
+<para>
+Olyan egységek, amelyekkel megadjuk az algoritmusok lépéseit és amely segítségével a fordítóprogram tárgyprogramot generálhat.
+Típusai:
+Deklarációs utasítások:Nincs tárgykód a utasítás mögött. A tárgykód a végrehajtható utasításokból generálódik, a fordító segítségével
+és a végrehajtható utasítások.
+A deklarációs utasítások mögött nem áll tárgykód. A tárgykód a végrehajtható utasításokból generálódik, fordítóprogram segítségével.
+Az értékadó utasítás feladata beállítani vagy módosítani a változók értékkomponensét.
+Az üres utasítások -> üres gépi utasítást hajt végre.
+Az ugró utasítás (GOTO címke)->a program egy adott pontjáról egy adott címkével ellátott végrehajtható utasításra adja át a vezérlést.
+A kétirányú elágaztató utasítás (IF feltétel THEN tevékenység [ELSE tevékenység]) arra szolgál, hogy a program egy adott pontján két tevékenység közül válasszunk, illetve egy adott tevékenységet végrehajtsunk vagy sem.
+ELSE-ág hiánya esetén rövid kétirányú elágaztató utasításról beszélünk.
+A többirányú elágaztató utasítás arra szolgál, hogy a program egy adott pontján egymást kölcsönösen kizáró tevékenységek közül egyet végrehajtsunk.
+<programlisting><![CDATA[
+C-ben:
+SWITCH (kifejezés) {
+CASE egész_konstans_kifejezés: [tevékenység]
+[CASE egész_konstans_kifejezés: [tevékenység]]...
+[DEFAULT: tevékenység]
+};]]>
+</programlisting>
+A ciklusszervező utasítások lehetővé teszik, hogy a program egy adott pontján egy bizonyos tevékenységet akárhányszor megismételjünk. Felépítése: fej, mag, vég.
+A feltételes ciklusnál az ismétlődést az igaz vagy hamis érték határozza meg. A feltétel a fejben(While) vagy a végben(For) szerepel, a mag az ismételendő végrehajtható utasításokat tartalmazza.
+Az előírt lépésszámú ciklusnál a ciklusparaméterek a fejben vannak. A változó által felvett értékekre fut le a ciklusmag. A ciklusváltozó a tartománynak vagy minden elemét fölveheti, vagy csak a tartományban szabályosan elhelyezkedő bizonyos értékeket.
+A felsorolásos ciklusnak van ciklusváltozója, és minden felvett érték mellett lefut a mag.
+A végtelen ciklusnál sem a fejben, sem a végben nincs információ az ismétlődésre vonatkozóan.
+Az összetett ciklus pedig az előző ciklusfajták kombinációja.
+<programlisting><![CDATA[
+C-ben:
+//Kezdőfeltételes ciklus:
+WHILE(feltétel) végrehajtható_utasítás
+//Végfeltételes ciklus:
+DO végrehajtható_utasítás WHILE(feltétel);
+//FOR-ciklus:
+FOR([kifejezés1]; [kifejezés2]; [kifejezés3]) végrehajtható_utasítás
+//Vezérlő utasítások:
+CONTINUE;
+BREAK;
+RETURN[kifejezés];]]>
+</programlisting>
+</para>
+</formalpara>
+    </section>
+    <section>
+        <title>Kernigan-Ritchie: A C programozási nyelv</title>
+        <formalpara>
+            <title>Vezérlési szerkezetek:</title>
+        <para>
+Egy nyelv vezérlésátadó utasításai az egyes műveletek végrehajtási sorrendjét határozzák meg.
+Egy olyan kifejezés, mint x = 0, i++ vagy printf(...) utasítássá válik, ha egy pontosvesszőt írunk utána.
+A C nyelvben ugyanis a pontosvessző az utasításlezáró jel (terminátor).
+A {} kapcsos zárójelekkel deklarációk és utasítások csoportját tudjuk összefogni egyetlen összetett utasításba vagy blokkba.
+Pl. if, else, while, for utasítások utáni utasításokat összefogó zárójelpár.
+Az if-else utasítást döntés kifejezésére használjuk.
+Az utasítás először kiértékeli a kifejezést, és ha ennek értéke igaz, akkor az 1. utasítást hajtja végre. Ha hamis és van else rész, akkor a 2. utasítás hajtódik végre.
+<programlisting><![CDATA[
+if (kifejezés)
+	1. utasítás
+else
+	2. utasítás
+//az else rész opcionális]]>
+</programlisting>
+Az else-if utasítás adja a többszörös döntések programozásának egyik legáltalánosabb lehetőségét.
+A gép sorra kiértékeli a kifejezéseket és ha bármelyik ezek közül igaz, akkor végrehajtja a megfelelő utasítást, majd befejezi a láncot.
+<programlisting><![CDATA[
+if (kifejezés)
+	utasítás
+else if (kifejezés)
+	utasítás
+.
+.
+.
+else
+	utasítás]]>
+	</programlisting>
+A switch utasítás úgy működik, hogy összehasonlítja egy kifejezés értékét több egész értékű állandó kifejezés értékével, és az ennek megfelelő utasítást hajtja végre.
+A case ágakban egy egész állandó vagy állandó egész értékű kifejezés található, és ha ennek értéke megegyezik a switch utáni kifejezés értékével, akkor végrehajtódnak az utasítások.
+A default ág opcionális, akkor hajtódik végre, ha egyetlen case ághoz tartozó feltétel sem teljesült.
+<programlisting><![CDATA[
+switch (kifejezés) {
+	case állandó kifejezés: utasítások
+	case állandó kifejezés: utasítások
+	.
+	.
+	.
+	default: utasítások
+}]]>
+</programlisting>
+A while ciklus esetén a program először kiértékeli a kifejezést. A ciklus addig folytatódik, amíg a kifejezés nullává (false) nem válik.
+<programlisting><![CDATA[
+while (kifejezés)
+	utasítás]]>
+	</programlisting>
+A for utasítás mindhárom komponense kifejezés.
+Egyszerű inicializálás és újrainicializálás esetén előnyösebb a while ciklusnál, mivel a ciklust vezérlő utasítások jól látható formában helyezkednek el.
+<programlisting><![CDATA[
+for (1. kifejezés, 2. kifejezés, 3. kifejezés)
+	utasítás]]>
+	</programlisting>
+A harmadik ciklusszervező utasítás a do-while.
+A gép először végrehajtja az utasítást és csak utána értékeli a kifejezést.
+Addig tart a ciklus, amíg a kifejezés értéke hamis nem lesz.
+<programlisting><![CDATA[
+do
+	utasítás
+while (kifejezés);]]>
+</programlisting>
+A break utasítás lehetővé teszi a for, while vagy do utasításokkal szervezett ciklusok idő előtti elhagyását, valamint a switch utasításból való kilépést.
+A ciklusmagban található continue utasítás hatására azonnal megkezdődik a következő iterációs lépés.
+A goto utasítással megadott címkékre ugorhatunk. Használatának egyik legelterjedtebb esete, amikor több szinten egymásba ágyazott szerkezet belsejében kívánjuk abbahagyni a feldolgozást és egyszerre több, egymásba ágyazott ciklusból szeretnénk kilépni.
+        </para>
+        </formalpara>
+        <formalpara>
+            <title>Utasítások:</title>
+            <para>
+Végrehajtásuk a hatásukban nyilvánul meg és nem rendelkeznek értékkel.
+<programlisting><![CDATA[
+utasítás:
+	címkézett_utasítás
+	kifejezésutasítás
+	összetett_utasítás
+	kiválasztó_utasítás
+	iterációs_utasítás
+	vezérlésátadó_utasítás]]>
+	</programlisting>
+Az utasításokhoz előtagként megadott címke tartozhat.
+<programlisting><![CDATA[
+címkézett_utasítás
+	azonosító: utasítás
+	case állandó_kifejezés: utasítás
+	default: utasítás]]>
+	</programlisting>
+A címkék önmagukban nem módosítják az utasítások végrehajtásának sorrendjét.
+Az utasítások többsége kifejezésutasítás. Funkcióját tekintve a legtöbb kifejezésutasítás értékadás vagy függvényhívás.
+<programlisting><![CDATA[
+kifejezésutasítás:
+	kifejezés]]>
+	</programlisting>
+A C nyelvben lehetőség van összetett utasításokra is, melyek több utasítás egyetlen utasításkénti kezelését teszi lehetővé.
+<programlisting><![CDATA[
+összetett_utasítás:
+	{deklarációs_lista utasítás_lista}
+deklarációs_lista:
+	deklaráció
+	deklarációs_lista deklaráció
+utasítás_lista:
+	utasítás
+	utasítás_lista utasítás]]>
+	</programlisting>
+A kiválasztó utasítások minden esetben a lehetséges végrehajtási sorrendek egyikét választják ki.
+<programlisting><![CDATA[
+kiválasztó_utasítás:
+	if (kifejezés) utasítás
+	if (kifejezés) utasítás else utasítás
+	switch (kifejezés) utasítás]]>
+	</programlisting>
+Az iterációs utasítások egy ciklust határoznak meg.
+<programlisting><![CDATA[
+iterációs_utasítás:
+	while (kifejezés) utasítás
+	do utasítás while (kifejezés):
+	for (kifejezés; kifejezés; kifejezés) utasítás]]>
+</programlisting>
+A vezérlésátadó utasítások a vezérlés feltétel nélküli átadására alkalmasak.
+<programlisting><![CDATA[
+vezérlésátadó_utasítás:
+	goto azonosító;
+	continue;
+	break;
+	return kifejezés;]]>
+	</programlisting>
+            </para>
+        </formalpara>
+    </section>
+    <section>
+        <title>Benedek-Levendovszky: Szoftverfejlesztés C++ nyelven</title>
+    <formalpara>
+        <title>A C és a C++ nyelv:</title>
+    <para>
+A C++ nyelvben az üres paraméterlista egy void paraméter megadásával ekvivalens: a függvénynek nincs paramétere.
+<programlisting><![CDATA[
+void f(void)
+{
+	// Az f függvény törzse...
+}]]>
+</programlisting>
+A szabványos C++ nyelvben a main függvénynek két formája létezik:
+<programlisting><![CDATA[
+int main()
+{
+	...
+}]]>
+</programlisting>
+és
+<programlisting><![CDATA[
+int main(int argc, char* argv[])
+{
+	...
+}
+//argc: parancssor-argumentumok száma
+//argv: parancssor-argumentumok]]>
+</programlisting>
+A C++ nyelvben került bevezetésre a bool típus, ami logikai igaz/hamis értéket tud reprezentálni. Pl. bool success = false.
+A bool típus olvashatóbb kódot eredményez, lehetőség van a függvénynevek és operátorok bool és int típusokra vonatkozó túlterhelésére.
+A C++ nyelvben a wchar_t beépített típus lett, így használatához a típusdefinícióra nincs szükség.
+<programlisting><![CDATA[
+wchar_t c = L's';
+wchar_t* text = L"sss";]]>
+</programlisting>
+A függvényeket a nevük és az argumentumlistájuk együttesen azonosítja, tehát a C++ nyelvben van lehetőség azonos nevű függvények létrehozására.
+A függvények argumentumainak alapértelmezett értékét is meg tudjuk már adni.
+Amennyiben a függvény hívásakor nem adunk meg értéket, a függvény az adott argumentum alapértelmezett értékével kerül meghívásra.
+A C++ bevezette a referenciatípust, ami megszünteti a pointerek szerepét a cím szerinti paraméterátadásban.
+<programlisting><![CDATA[
+#include <stdio.h>
+void f (int& i)
+{
+	i = i + 2;
+}
+int main(void)
+{
+	int a = 0;
+	f(a);
+	printf("%d\n", a);
+}
+//Ebben a C++ programban látható, hogy nem kell a változó címét képezni és az i szimbólumot ugyanolyan szintaxissal használhatjuk, mint egy int típusú változót.
+//A program kimenete 2 és egy soremelés lesz.
+//Egy adott típusú referenciát a referencia neve elé írt & jellel deklarálunk.
+//Az & jel egyargumentumú operátor is egyben, amely a mögötte álló változó címét adja vissza.]]>
+</programlisting>
+
+    </para>
+    </formalpara>
+    </section>
+
+
+</chapter>
+
