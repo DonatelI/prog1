@@ -10,6 +10,7 @@
         <formalpara>
             <title>Alapfogalmak:</title>
             <para>
+A könyv egészében Tutor: <link xlink:href="https://gitlab.com/whoisZORZ">Ország Levente Máté</link>
 A magas szintű nyelv a számítógépek programozására kialakult nyelvek egyik szintje.
 Forrásszövegnek nevezzük a magas szintű programozási nyelven írt programot.
 Fő fajtái a programkészitésnek(a forrásszövegből) a fordítóprogramos(pl C) és az interpreteres módszer(pl JavaScript)
@@ -134,6 +135,30 @@ RETURN[kifejezés];]]>
 </programlisting>
 </para>
 </formalpara>
+<title>Paraméterek:</title>
+ <para>
+Akkor beszélünk paraméterkiértékelésről, amikor egy alprogram hívásánál egymáshoz rendelődnek a formális- és aktuális paraméterek, és meghatározódnak azok az információk, amelyek a paraméterátadásnál a kommunikációt szolgálják.
+Mindig a formális paraméterlista az elsődleges, egy darab van belőle.
+Aktuális paraméterlista viszont annyi lehet, ahányszor meghívjuk az alprogramot.
+Az, hogy melyik formális paraméterhez melyik aktuális paraméter fog hozzárendelődni, függ a kötéstől.
+Sorrendi kötés esetén a formális paraméterekhez a felsorolás sorrendjében rendelődnek hozzá az aktuális paraméterek.
+Név szerinti kötés esetén az aktuális paraméterlistában határozhatjuk meg az egymáshoz rendelést úgy, hogy megadjuk a formális paraméter nevét és mellette valamilyen szintaktikával az aktuális paramétert.
+Ha a formális paraméterek száma fix, akkor a paraméterkiértékelés kétféle módon mehet végbe.
+Vagy meg kell egyeznie az aktuális paraméterek számának a formális paraméterek számával, vagy kevesebb lehet, mint a formális paraméterek száma.
+A programozási nyelvek egy része a típusegyenértékűséget vallja, ekkor az aktuális paraméter típusának azonosnak kell lennie a formális paraméter típusával.
+A programozási nyelvek másik része azt mondja, hogy az aktuális paraméter típusának konvertálhatónak kell lennie a formális paraméter típusára.
+A paraméterátadás az alprogramok és más programegységek közötti kommunikáció egy formája.
+Mindig van egy hívó (tetszőleges programegység) és egy hívott (alprogram).
+A nyelvek a következő paraméterátadási módokat ismerik: érték szerinti, cím szerinti, eredmény szerinti, érték-eredmény szerinti, név szerinti, szöveg szerinti.
+Az érték szerinti paraméterátadás esetén a formális paramétereknek van címkomponensük a hívott alprogram területén.
+A cím szerinti paraméterátadásnál a formális paramétereknek nincs címkomponensük a hívott alprogram területén.
+Az eredmény szerinti paraméterátadásnál a formális paramétereknek van címkomponense a hívott alprogram területén, az aktuális paraméternek pedig lennie kell címkomponensének.
+Az érték-eredmény szerinti paraméterátadásnál a formális paraméternek van címkomponense a hívott területén és az aktuális paraméternek rendelkeznie kell érték- és címkomponenssel.
+A név szerinti paraméterátadásnál az aktuális paraméter egy, az adott szövegkörnyezetben értelmezhető tetszőleges szimbólumsorozat lehet.
+A szöveg szerinti paraméterátadás a név szerintinek egy változata, annyiban különbözik tőle, hogy a hívás után az alprogram elkezd működni, az aktuális paraméter értelmező szövegkörnyezetének rögzítése és a formális paraméter felülírása csak akkor következik be, amikor a formális paraméter neve először fordul elő az alprogram szövegében a végrehajtás folyamán.
+Az alprogramok formális paramétereit három csoportba sorolhatjuk: input (pl. érték szerinti), output (pl. eredmény szerinti), input-output (pl. érték-eredmény szerinti).
+            </para>
+        </formalpara>
     </section>
     <section>
         <title>Kernigan-Ritchie: A C programozási nyelv</title>
@@ -325,8 +350,27 @@ int main(void)
 
     </para>
     </formalpara>
+     <formalpara>
+        <title>Operátorok és túlterhelésük:</title>
+    <para>
+A C nyelvben az operátorok az argumentumaikon végeznek műveletet, az adott művelet eredményét a visszatérési értékük feldolgozásával használhatjuk.
+Az adott operátor mellékhatásának nevezzük az operátorok értékének megváltoztatását.
+A c++ kifejezés esetén a c változó a ++ operátor argumentuma, az operátor visszatérési értéke a c változó eredeti értéke, mellékhatásként az operátor kiértékelése után a c változó értéke eggyel több lesz.
+A C++ nyelv a C-hez képest bevezet néhány új operátort (pl. hatókör-operátor ::, pointer-tag operátor .* és ->*).
+A C nyelvben csak érték szerinti paraméterátadás van, nem tudjuk megváltoztatni egy változó értékét, csak ha a változóra mutató pointert adunk át.
+A C++-ban azonban a referencia szerinti paraméterátadás "mellékhatásra" is képes.
+<programlisting><![CDATA[
+//A prefix ++ operátort kétféleképpen is meghívhatjuk:
+++i; //hagyományos, operátor-írásmód
+operator++ (i); //C++: a függvényszintaxis is megengedett]]>
+//A C++-ban az operátor kulcsszó, ezzel adjuk meg, hogy egy speciális függvényről van szó:
+c = a + b; //hagyományos, operátor-írásmód
+c = operator + (a, b); //az = operátor-, a + függvényszintaxissal
+operator = (c, operator + (a, b)); //függvényszintaxis]]>
+</programlisting></para>
+    </formalpara>
+
     </section>
 
 
 </chapter>
-
