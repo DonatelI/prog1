@@ -10,17 +10,14 @@
         <formalpara>
             <title>Alapfogalmak:</title>
             <para>
-A könyv egészében Tutor: <link xlink:href="https://gitlab.com/whoisZORZ">Ország Levente Máté</link>
-A magas szintű nyelv a számítógépek programozására kialakult nyelvek egyik szintje.
-Forrásszövegnek nevezzük a magas szintű programozási nyelven írt programot.
-Fő fajtái a programkészitésnek(a forrásszövegből) a fordítóprogramos(pl C) és az interpreteres módszer(pl JavaScript)
-A fordítóprogram a következő lépéseket hajtja végre: lexikális elemzés (darabolás egységekre), szintaktikai elemzés (teljesülnek-e a nyelv szabályai), szemantikai elemzés és kódgenerálás.
-A fordítóprogam mint "közvetítő réteg" rengeteg tesztet, elemzést hajt végre a programon a kódgeneráláson kívül (pl lexikális, szintaktikai, szemantikai elemzés
+A számítógépek programozására kialakult nyelvek egyik szintje a magas szintű nyelv.
+Forrásszövegnek nevezzük a magas szintű programozási nyelven írt program számunkra érthető, írható és olvasható formában megírt forrását amit a fordító gépi kódra fordít.
+Fő fajtái a programkészitésnek a fordítóprogramos és az interpreteres módszer.
+A fordítóprogram a következő lépéseket hajtja végre: lexikális elemzés, szintaktikai elemzés, szemantikai elemzés és kódgenerálás.
 Míg a fordítóprogramos technikánál készül tárgyprogram, addig az interpreteres technikánál nem.
-A programozási nyelvek saját szintaktikai és szemantikai szabályait hivatkozási nyelvnek nevezzük.
-A programnyelvek osztályozása: vannak imperatív, deklaratív és egyéb nyelvek.
-Imperatív nyelvek:a program utasítások sorozata és a legfőbb programozói eszköz a változó. Az algoritmus működteti a processzort.
-Deklaratív nyelvek: nem algoritmikus nyelvek, a programozónak nincs lehetősége memóriaműveletekre (vagy csak korlátozott módon).
+Vannak imperatív, deklaratív és egyéb nyelvek.
+Imperatív nyelvek: a program utasítások sorozata és a legfőbb programozói eszköz a változó. Az algoritmus működteti a processzort.
+Deklaratív nyelvek: nem algoritmikus nyelvek, a programozónak nincs, vagy csak korlátozott módon van lehetősége memóriaműveletekre.
             </para>
         </formalpara>
         <formalpara>
@@ -30,11 +27,10 @@ Az adattípus konkrét programozási eszközök komponenseként jelenik meg.
 Legfontosabb tényezői a tartomány, a műveletek és reprezentáció.
 Tartomány: Olyan elemeket tartalmaz, amiket felvehet értékként egy programozási eszköz.
 (Műveletek: elemeken végrehajtható műveletek)
-Reprezentáció: belső ábrázolási mód.(gyakran előre meghatározott)
-Saját reprezentáció igen ritka(pl. Ada)
+Reprezentáció: belső ábrázolási mód.
 Az adattípusok csoportjai:
-Egyszerű:egész, valós, karakteres és a logikai típusok
-Összetett:Tömb(több fajta dimenziós változatok)
+Egyszerű:egész, valós, karakteres és a logikai típusok.
+Összetett: pl.:Tömb.
 Az egyszerű típusok közül az egész, valós, karakteres és a logikai típus már a programozás-tanulás korai fázisában előjön.
 Ugyanez elmondható a tömbről is, mely ugyan az összetett típusokhoz tartozik, de egy- és kétdimenziós változatait gyakran használjuk, szinte a kezdetektől fogva.
             </para>
@@ -43,7 +39,10 @@ Ugyanez elmondható a tömbről is, mely ugyan az összetett típusokhoz tartozi
             <title>A nevesített konstans:</title>
             <para>
 Három komponense van: név, típus és érték.
-A nevesített konstans amit mi használunk általában a #define. amely minden előfordulást kicserél
+A nevesített konstans amit mi használunk általában a #define. ami mindenhol kicseréli a definiált kulcsszót a megadott típusú értékre.
+		    Elég hasznos ha valamit több helyen is akarunk használni mert elég csak a definiálásnál kicserélni az értéket, 
+		    és nem tudjuk még véletlenül sem megváltoztatni később a program futása 
+		    során ezzel elkerülve a lehetséges bugokat.
             </para>
         </formalpara>
         <formalpara>
