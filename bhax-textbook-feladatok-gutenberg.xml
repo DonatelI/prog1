@@ -10,6 +10,7 @@
         <formalpara>
             <title>Alapfogalmak:</title>
             <para>
+		    Tutor: <link xlink:href="https://gitlab.com/whoisZORZ">Ország Levente Máté</link>
 A magas szintű nyelv a számítógépek programozására kialakult nyelvek egyik szintje.
 Forrásszövegnek nevezzük a magas szintű programozási nyelven írt programot.
 Kétféle technikával is készíthetünk gépi nyelvű programot a forrásprogramból: fordítóprogramos és interpreteres technikával.
