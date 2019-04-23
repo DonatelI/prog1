@@ -17,27 +17,22 @@
             Megoldás forrása: <link xlink:href="https://github.com/tensorflow/tensorflow/releases/tag/v0.9.0">https://github.com/tensorflow/tensorflow/releases/tag/v0.9.0</link> (/tensorflow-0.9.0/tensorflow/examples/tutorials/mnist/), <link xlink:href="https://progpater.blog.hu/2016/11/13/hello_samu_a_tensorflow-bol">https://progpater.blog.hu/2016/11/13/hello_samu_a_tensorflow-bol</link>  
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+A TensorFlow egy szoftverkönyvtár, gépi tanulási algoritmusok leírására és végrehajtására.
+Roppant flexibilis, nagyon széles körű algoritmusok megvalósítására alkalmas, például a beszédfelismerésben, a robotikában, az információ kinyerésben, a számítógépek
+elleni támadások felderítésében, és az agykutatásban.
+</para>
+<para>
+A TensorFlow számítást egy irányított gráf írja le. Az adatáramlás a gráf élei mentén
+történik. A gráfban mindegyik csúcs egy műveletet reprezentálhat és
+mindegyik csúcsnak lehet nulla vagy több inputja, ugyanígy nulla vagy több outputja.
+A gráf normál élei mentén áramló értékek tenzorok, tetszőleges dimenziójú vektorok.
         </para>
-    </section>        
+        <para>
+            A feladatban a TensorFlow segítségével készítünk fel egy modellt kézírású számjegyek felismerésére.
+            Ehhez az MNIST adatállományt is felhasználjuk, ami kézírással írt számjegyek képeit tartalmazza.
+        </para>
 
-<!--
-    <section>
-        <title>Szoftmax R MNIST</title>
-        <para>
-            R            
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
     </section>        
--->
     
     <section>
         <title>Mély MNIST</title>
@@ -54,23 +49,7 @@
             Tanulságok, tapasztalatok, magyarázat...
         </para>
     </section>        
-<!--
-    <section>
-        <title>Deep dream</title>
-        <para>
-            Keras            
-        </para>
-        <para>
-            Megoldás videó:
-        </para>
-        <para>
-            Megoldás forrása:                
-        </para>
-        <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
-    </section>        
--->                  
+                 
     <section>
         <title>Minecraft-MALMÖ</title>
         <para>
@@ -82,8 +61,16 @@
             Megoldás forrása:                
         </para>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
-        </para>
+A Project Malmo egy olyan platform, amely segítségével kutatásokat végezhetünk a mesterséges intelligencia világában, 
+méghozzá a népszerű játék, a Minecraft használatával.
+Olyan Python ágenst készítünk, amely egy alapértelmezett biomban gazdag világban az akadályokat legyőzve, jobbra-balra tartva felfedezi a világot.
+</para>
+<para>
+Először meg kell látogatnunk a <link xlink:href="https://github.com/Microsoft/malmo">hivatalos GitHub repót</link>, ahol láthatjuk,
+hogy a telepítés elvégezhető akár a Python Pip Package segítségével (amit ugyebár az első feladatban használtunk), de dolgozhatunk pre-built verzióval is, oprendszertől függetlenül.
+Én ezúttal Windows oprendszeren dolgoztam, és a pre-built fájlokat töltöttem le, melyeket a forráskönyvtárban mellékeltem is.
+</para>
+
     </section>        
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 </chapter>      
