@@ -107,14 +107,37 @@
             a feladat lényege, hogy lexert használjunk, azaz óriások vállán álljunk és ne kispályázzunk!
         </para>
         <para>
-            Megoldás videó: 
+            Megoldás videó:
         </para>
         <para>
-            Megoldás forrása:  
+            Megoldás forrása: <link xlink:href="Chomsky/realnumber.l">
+                <filename>bhax/thematic_tutorials/bhax_textbook_IgyNeveldaProgramozod/Chomsky/realnumber.l</filename>
+            </link> 
         </para>
+        <programlisting language="c"><![CDATA[%{
+#include <stdio.h>
+int realnumbers = 0;
+%}
+digit	[0-9]
+%%
+{digit}*(\.{digit}+)?	{++realnumbers; 
+    printf("[realnum=%s %f]", yytext, atof(yytext));}
+%%
+int
+main ()
+{
+ yylex ();
+ printf("The number of real numbers is %d\n", realnumbers);
+ return 0;
+}
+]]></programlisting>
         <para>
-            Tanulságok, tapasztalatok, magyarázat...
+		Itt a <code>realnumbers</code> változó csak a valós számok számlálására van ez teljesen elhagyható,
+		a valós számokat az utánna következő kódrészlet definiálja. A <code>digit    [0-9]</code> csak 
+		behelyettesíti a <code>[0-9]</code>-t a <code>digit</code> helyére. a valós számokat a <code>{digit}*(\.{digit}+)?</code>
+		rész keresi meg. ............
         </para>
+
     </section>                     
 
     <section>
